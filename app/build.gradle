@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -41,9 +42,22 @@ dependencies {
     implementation "org.koin:koin-android:$depVersion.koin"
     implementation "org.koin:koin-androidx-viewmodel:$depVersion.koin"
 
-    // Ktor. Could be Retrofit, but it is so much smaller and without any dynamic proxies
-    implementation "io.ktor:ktor-client-core:$depVersion.ktor"
-    implementation "io.ktor:ktor-client-cio:$depVersion.ktor"
+    // RxJava2. Could be RxJava 3, but it is still RC and no support in room and retrofit
+    implementation "io.reactivex.rxjava2:rxjava:$depVersion.rxjava2"
+
+    // Room. Could be with coroutines, but flow and channels are beta in coroutines
+    implementation "androidx.room:room-runtime:$depVersion.room"
+    kapt "androidx.room:room-compiler:$depVersion.room"
+    implementation "androidx.room:room-ktx:$depVersion.room"
+    implementation "androidx.room:room-rxjava2:$depVersion.room"
+
+    // Retrofit. Could be Ktor, but flow and channels are beta in coroutines
+    implementation "com.squareup.retrofit2:retrofit:$depVersion.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$depVersion.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$depVersion.retrofit"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$depVersion.gson"
 
     testImplementation 'junit:junit:4.12'
 
