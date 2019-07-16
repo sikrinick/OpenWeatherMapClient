@@ -37,11 +37,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$depVersion.navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$depVersion.navigation"
 
-    // Koin
+    // Koin. Could be Dagger, but it is so much easier and faster to develop apps of this size
     implementation "org.koin:koin-android:$depVersion.koin"
     implementation "org.koin:koin-androidx-viewmodel:$depVersion.koin"
 
-    // Ktor
+    // Ktor. Could be Retrofit, but it is so much smaller and without any dynamic proxies
+    implementation "io.ktor:ktor-client-core:$depVersion.ktor"
     implementation "io.ktor:ktor-client-cio:$depVersion.ktor"
 
     testImplementation 'junit:junit:4.12'
