@@ -1,3 +1,14 @@
 <resources>
+
     <string name="app_name">OpenWeatherMapClient</string>
+
+    <string name="celsius_symbol">C</string>
+    <string name="fahrenheit_symbol">F</string>
+    <string name="kelvin_symbol">K</string>
+
+    <string name="error_try_again_later">Too many request.\nPlease, try again later.</string>
+
+    <string name="connection_online">App is online</string>
+    <string name="connection_offline">App is offline</string>
+
 </resources>

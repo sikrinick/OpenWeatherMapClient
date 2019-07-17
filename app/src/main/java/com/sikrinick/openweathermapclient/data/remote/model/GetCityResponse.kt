@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GetCityResponse(
     @SerializedName("id")
-    val id: String,
+    val id: Int,
     @SerializedName("name")
     val name: String,
 
@@ -21,4 +21,8 @@ data class GetCityResponse(
         val countryCode: String
     )
 
+    data class MainWeatherInfo(
+        @SerializedName("temp")
+        val tempKelvin: Double
+    )
 }

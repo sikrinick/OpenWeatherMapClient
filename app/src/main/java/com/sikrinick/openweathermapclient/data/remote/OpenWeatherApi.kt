@@ -9,13 +9,14 @@ import retrofit2.http.Query
 // It is possible to move to separate interface, if needed
 interface OpenWeatherApi {
 
-    //api for find: http://api.openweathermap.org/data/2.5/find?q=Lon&appid=2ea38e2d2030dc1c8df2276cea21524a
-    @GET("/find")
-    fun findCitiesByName(
+    //api for find: https://api.openweathermap.org/data/2.5/find?q=Lon&appid=2ea38e2d2030dc1c8df2276cea21524a
+    @GET("find")
+    fun findCitiesBySimilarName(
         @Query("q") nameQuery: String
-    ): Single<List<FindCitiesResponse>>
+    ): Single<FindCitiesResponse>
 
-    @GET("/weather")
+    //api for get: https://api.openweathermap.org/data/2.5/weather?q=London&appid=2ea38e2d2030dc1c8df2276cea21524a
+    @GET("weather")
     fun getWeatherById(
         @Query("id") id: String
     ): Single<GetCityResponse>

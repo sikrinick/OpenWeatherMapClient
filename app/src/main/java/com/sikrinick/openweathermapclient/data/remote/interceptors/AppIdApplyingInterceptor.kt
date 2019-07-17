@@ -10,8 +10,7 @@ class AppIdApplyingInterceptor(private val appId: String): Interceptor {
         val request = chain.request()
 
         //Adding appid=111111
-        val url = request
-            .url()
+        val url = request.url
             .newBuilder()
             .addQueryParameter(OpenWeatherApi.APP_ID_QUERY_PARAM, appId)
             .build()

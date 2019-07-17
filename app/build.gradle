@@ -44,6 +44,10 @@ dependencies {
 
     // RxJava2. Could be RxJava 3, but it is still RC and no support in room and retrofit
     implementation "io.reactivex.rxjava2:rxjava:$depVersion.rxjava2"
+    implementation "io.reactivex.rxjava2:rxkotlin:$depVersion.rxkotlin"
+
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:$depVersion.rxandroid"
 
     // Room. Could be with coroutines, but flow and channels are beta in coroutines
     implementation "androidx.room:room-runtime:$depVersion.room"
@@ -55,11 +59,22 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$depVersion.retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$depVersion.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$depVersion.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.0.1"
 
     // Gson
     implementation "com.google.code.gson:gson:$depVersion.gson"
 
+    // RxPreferences
+    implementation 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0'
+
+    // Reactive network
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.3'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     testImplementation 'junit:junit:4.12'
+    testImplementation "io.mockk:mockk:1.9.3.kotlin12"
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

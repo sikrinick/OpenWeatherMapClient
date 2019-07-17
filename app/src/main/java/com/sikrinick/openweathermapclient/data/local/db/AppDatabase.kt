@@ -1,16 +1,15 @@
-package com.sikrinick.openweathermapclient.data.local
+package com.sikrinick.openweathermapclient.data.local.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.sikrinick.openweathermapclient.data.local.city.City
-import com.sikrinick.openweathermapclient.data.local.city.CityDao
+import com.sikrinick.openweathermapclient.data.local.db.model.CityWeather
 
-@Database(entities = [City::class], version = 1)
+@Database(entities = [CityWeather::class], version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
-    public abstract fun cityDao(): CityDao
+    abstract fun cityDao(): CityWeatherDao
 
     companion object {
 
