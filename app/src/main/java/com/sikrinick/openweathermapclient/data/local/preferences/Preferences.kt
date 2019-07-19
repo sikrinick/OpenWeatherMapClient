@@ -3,7 +3,6 @@ package com.sikrinick.openweathermapclient.data.local.preferences
 import android.content.SharedPreferences
 import com.f2prateek.rx.preferences2.RxSharedPreferences
 import com.google.gson.Gson
-import com.vestiacom.mobilefailover.util.util.PreferenceDelegates
 
 class Preferences(
     sharedPreferences: SharedPreferences,

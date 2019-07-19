@@ -29,6 +29,7 @@ class CitySearchViewModel(
 
     init {
         observeNetworkConnectionStateUseCase.execute()
+            .skip(1)
             .subscribeBy(
                 onNext = { eventData.value = CitySearchEvent.ConnectionState(it) },
                 onError = { Timber.e(it) }
@@ -37,6 +38,7 @@ class CitySearchViewModel(
     }
 
     fun search(nameQuery: String?) {
+        searchDisposable?.dispose()
         searchDisposable = observeCitiesByNameUseCase.execute(nameQuery)
             .doOnSubscribe {
                 eventData.value = CitySearchEvent.Loading(true)

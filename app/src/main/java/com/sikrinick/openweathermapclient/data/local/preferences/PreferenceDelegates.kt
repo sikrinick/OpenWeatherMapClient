@@ -1,4 +1,4 @@
-package com.vestiacom.mobilefailover.util.util
+package com.sikrinick.openweathermapclient.data.local.preferences
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

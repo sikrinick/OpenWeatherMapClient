@@ -4,7 +4,7 @@ import com.sikrinick.openweathermapclient.data.local.db.CityWeatherDao
 import com.sikrinick.openweathermapclient.data.local.db.model.CityWeather
 import com.sikrinick.openweathermapclient.data.remote.WeatherApiService
 import io.reactivex.Observable
-import timber.log.Timber
+import io.reactivex.Single
 
 
 class CityWeatherRepository(
@@ -15,18 +15,15 @@ class CityWeatherRepository(
 
     fun observeCitiesBySimilarName(similarName: String): Observable<List<CityWeather>> = networkStateRepository
         .observeNetworkConnected()
-        .flatMap { connected ->
-            if (connected) {
+        .flatMapSingle { connected ->
+            if (connected)
                 weatherApiService.findCitiesBySimilarName(similarName)
-                    .doOnSuccess { cityWeatherDao.insert(it) }
-                    .toObservable()
-                    .onErrorResumeNext { error: Throwable ->
-                        Timber.e(error, "error")
-                        cityWeatherDao.findBySimilarName(similarName)
-                    }
-            } else {
-                cityWeatherDao.findBySimilarName(similarName)
-            }
+                    .flatMapCompletable { cityWeatherDao.insert(it) }
+                    .toSingleDefault(connected)
+            else
+                Single.just(connected)
         }
+        .flatMap { cityWeatherDao.findBySimilarName(similarName) }
+        .onErrorResumeNext { error: Throwable -> cityWeatherDao.findBySimilarName(similarName) }
 
 }

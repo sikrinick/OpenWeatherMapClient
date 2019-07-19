@@ -17,14 +17,14 @@ class ObserveCitiesByNameUseCase(
 ) {
 
     fun execute(nameQuery: String?): Observable<List<City>> {
-        val cityWeatherSingle = if (nameQuery.isNullOrBlank()) {
+        val cityWeatherObs = if (nameQuery.isNullOrBlank()) {
             Observable.just(emptyList())
         } else {
             cityWeatherRepository.observeCitiesBySimilarName(nameQuery)
         }
         return Observables
             .combineLatest(
-                cityWeatherSingle,
+                cityWeatherObs,
                 userSettingsRepository.observeTemperature()
             )
             .map { (list, temperatureType) ->
